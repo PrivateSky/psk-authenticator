@@ -1,0 +1,14 @@
+<psk-container controller-name="ConfirmActionController">
+    <psk-modal opened>
+        <psk-label slot="title" class="title" label="@title"></psk-label>
+
+        <div class='content'>
+            <psk-label label="@description"></psk-label>
+        </div>
+
+        <div class='footer' slot='footer'>
+            <psk-button label="@denyButtonText" event-name="deny-button-on-click"></psk-button>
+            <psk-button class="black" label="@acceptButtonText" event-name="accept-button-on-click"></psk-button>
+        </div>
+    </psk-modal>
+</psk-container>

@@ -1,0 +1,80 @@
+<psk-page title="Authenticator">
+    <psk-container controller-name="ViewAuthCodesController">
+        <psk-button id="scan-app-button" event-name="import-application">Scan App QR Code</psk-button>
+
+        <psk-for-each class="wrap-list" data-view-model="applications">
+            <psk-card class="auth-card">
+                <div class="card-content">
+                    <div class="simple-flexible-row">
+                        <div class="flex-row auth-card-title">
+                            <psk-icon icon="@icon" color="#000000"></psk-icon>
+                            <psk-label class="app-title-label" label="@appName"></psk-label>
+                        </div>
+
+                        <div class="simple-flexible-row">
+                            <div class="left_align">
+                                <div class="flex-row">
+                                    <div id="countdown">
+                                        <psk-label class="countdown-number" label="@seconds"></psk-label>
+                                        <svg>
+                                            <circle r="18" cx="20" cy="20"></circle>
+                                        </svg>
+                                    </div>
+                                    <psk-label class="app-important-label" label="@code"></psk-label>
+                                </div>
+                            </div>
+                            <div class="right_align">
+                                <psk-button class="transparent-button" event-data="@" event-name="trigger-control-menu">
+                                    <psk-condition condition="@controlMenuEnabled">
+                                        <div slot="condition-true">
+                                            <psk-icon icon="arrow-right" color="rgb(0, 0, 0)"></psk-icon>
+                                        </div>
+                                        <div slot="condition-false">
+                                            <psk-icon icon="arrow-left" color="rgb(0, 0, 0)"></psk-icon>
+                                        </div>
+                                    </psk-condition>
+                                </psk-button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="simple-flexible-row">
+                        <div class="left_align">
+                            <psk-label label="@username"></psk-label>
+                        </div>
+                        <div class="right_align">
+                            <psk-condition condition="@backupCodeIsEnabled">
+                                <div slot="condition-true">
+                                    <div class="right_align">
+                                        <div class="flex-row">
+                                            <psk-label label="Backup code:"></psk-label>
+                                            <psk-label label="@backupCode"></psk-label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </psk-condition>
+                        </div>
+                    </div>
+                </div>
+                <psk-condition condition="@controlMenuEnabled">
+                    <div slot="condition-true">
+                        <div class="card-controls">
+                            <psk-button class="top-button transparent-button" event-data="@" event-name="copy-to-clipboard-on-click">
+                                <psk-icon icon="copy" color="rgb(255, 255, 255)"></psk-icon>
+                            </psk-button>
+                            <psk-button class="middle-button transparent-button" event-data="@" event-name="backup-button-on-click" disabled="@backupCodeDoesNotExist">
+                                <psk-icon icon="life-ring" color="rgb(0, 0, 0)"></psk-icon>
+                            </psk-button>
+                            <psk-button class="bottom-button transparent-button" event-data="@" event-name="delete-app-on-click">
+                                <psk-icon icon="trash" color="rgb(255, 255, 255)"></psk-icon>
+                            </psk-button>
+                        </div>
+                    </div>
+                </psk-condition>
+
+            </psk-card>
+            <psk-card slot="no-data" title="You have no auth codes"></psk-card>
+        </psk-for-each>
+        <psk-list-feedbacks messages-to-display="5" time-alive="3000"></psk-list-feedbacks>
+    </psk-container>
+</psk-page>
+

@@ -1,0 +1,45 @@
+<psk-container controller-name="ImportApplicationAuthController">
+    <psk-modal id="qrCodeModal" opened>
+        <psk-label slot="title" class="title" label="@title"></psk-label>
+
+        <div class='content'>
+            <psk-condition condition="@codeWasSelected">
+                <div slot="condition-true">
+                    <psk-grid columns="1" layout="xs=[12] m=[6] l=[6] xl=[6]">
+                        <psk-barcode-scanner class="center" data="@data"></psk-barcode-scanner>
+                    </psk-grid>
+                </div>
+                <div slot="condition-false">
+                    <div class="simple-flexible-row">
+                        <div class="left_align thirty-percent-width">
+                            <div class="top-element">
+                                <psk-label label="Your confirmation code:"></psk-label>
+                                <div class="flex-row">
+                                    <div id="countdown">
+                                        <psk-label class="countdown-number" label="@seconds"></psk-label>
+                                        <svg>
+                                            <circle r="18" cx="20" cy="20"></circle>
+                                        </svg>
+                                    </div>
+                                    <psk-label class="app-important-label" label="@code"></psk-label>
+                                </div>
+                            </div>
+                            <div class="bottom-element">
+                                <psk-text-input view-model="@backupCode"></psk-text-input>
+                            </div>
+                        </div>
+                        <div class="right_align seventy-percent-width">
+                            <div class="scrollable-box">
+                                <psk-icon-chooser icons-size="@icon.size" icons-color="@icon.color" value="@icon.value"></psk-icon-chooser>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </psk-condition>
+        </div>
+
+        <div class='footer' slot='footer'>
+            <psk-button label="@importButtonName" event-name="import-on-click" disabled="@importIsDisabled"></psk-button>
+        </div>
+    </psk-modal>
+</psk-container>
