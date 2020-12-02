@@ -44,8 +44,8 @@
         },
         {
           "type": "copy",
-          "src": "../privatesky/psknode/bundles/hostBoot.js",
-          "target": "code/scripts/bundles/hostBoot.js",
+          "src": "../privatesky/psknode/bundles/iframeBoot.js",
+          "target": "code/scripts/bundles/iframeBoot.js",
           "options": {
             "overwrite": true
           }
